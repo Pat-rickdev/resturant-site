@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Delicious healthy food prepared with love. Order now!">
+    <title>Restaurant Landing Page</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">EAT&DRINK</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" onclick="toggleMenu()">Home</a></li>
+            <li><a href="#menu" onclick="toggleMenu()">Menu</a></li>
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>HEALTHY FOOD<br><span>DELICIOUS!</span></h1>
+            <p>Prepared and served with love using fresh ingredients</p>
+            <a href="https://wa.me/254708256468" class="cta-btn" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> Order Now
+            </a>
+        </div>
+    </header>
+
+    <section id="menu">
+        <h2 class="section-title">Featured Meals</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="assets/images/Healthy bowl.png" alt="Healthy Bowl">
+                <div class="card-content">
+                    <h3>Fresh. Balanced. Delicious.</h3>
+                    <p>A nourishing bowl made with fresh vegetables, grains, and protein.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="assets/images/chicken.png" alt="Grilled Chicken">
+                <div class="card-content">
+                    <h3>Grilled to Perfection.</h3>
+                    <p>Juicy grilled chicken served with seasoned sides and fresh greens.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="assets/images/creamy Pasta.png" alt="Creamy Pasta">
+                <div class="card-content">
+                    <h3>Comfort, Elevated.</h3>
+                    <p>Rich, creamy pasta prepared with premium ingredients.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="assets/images/fries.png" alt="Crispy Fries">
+                <div class="card-content">
+                    <h3>Classic, Done Right.</h3>
+                    <p>Crispy fries paired with gourmet flavor.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="assets/images/pizza.png" alt="Pizza">
+                <div class="card-content">
+                    <h3>Every Slice Matters.</h3>
+                    <p>Stone-baked pizza with melted cheese and fresh toppings.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="assets/images/Vegeterian.png" alt="Vegetarian Meal">
+                <div class="card-content">
+                    <h3>Plant-Based Perfection.</h3>
+                    <p>Colorful, protein-rich vegetarian meal packed with flavor.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="assets/images/frsh juice.png" alt="Fresh Juice">
+                <div class="card-content">
+                    <h3>Naturally Refreshing.</h3>
+                    <p>Freshly blended fruits for a clean, energizing finish.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="assets/images/Smothie.png" alt="Smoothie">
+                <div class="card-content">
+                    <h3>Pure Energy.</h3>
+                    <p>Smooth, rich fruit blends made fresh.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2 class="section-title">Our Story</h2>
+        <div class="about-text">
+            <p>We believe great food begins with passion, fresh ingredients, and attention to detail.
+            Every dish we serve is carefully crafted to balance flavor, nutrition, and presentation.
+            Whether you’re dining in or ordering online, our goal is simple  deliver food that feels as good as it tastes.</p>
+            <p>Our chefs source the finest local produce to craft dishes that are as healthy as they are delicious. From our stone baked pizzas to our vibrant salads, every plate tells a story of quality and care.</p>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-carrot"></i>
+                <h4>Fresh Ingredients</h4>
+                <p>Farm-to-table quality in every bite.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-user-graduate"></i>
+                <h4>Skilled Chefs</h4>
+                <p>Culinary experts dedicated to perfection.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-stopwatch"></i>
+                <h4>Fast Service</h4>
+                <p>Hot and fresh, right when you need it.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-mobile-alt"></i>
+                <h4>Easy Ordering</h4>
+                <p>Seamless ordering via WhatsApp or online.</p>
+            </div>
+        </div>
+    </section>
+<section id="reviews" class="reviews">
+        <h2 class="section-title">Customer Love</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"Absolutely the best healthy food in Culinary City! The grain bowls are a game changer for my lunch break."</p>
+                <h4>- Sarah M.</h4>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p>"Fast delivery and the pizza was still hot. The crust is perfection. Highly recommended!"</p>
+                <h4>- Patrick O.</h4>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"Great vibes and even better food. The smoothies are my morning go-to energy boost."</p>
+                <h4>- Michelle O.</h4>
+            </div>
+        </div>
+    </section>
+    <footer id="contact">
+        <div class="social-icons">
+            <a href="https://web.facebook.com/vPatrick1" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/Patoh714" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://wa.me/254708256468" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="footer-info">
+            <p>123 Foodie Lane, Culinary City, Kenya</p>
+            <p>
+                Email: <a href="mailto:patrickonyango7030@gmail.com" style="color: inherit;">patrickonyango7030@gmail.com</a> 
+                | 
+                Phone: <a href="tel:+254708256468" style="color: inherit;">+254708256468</a>
+            </p>
+            <p>&copy; 2026 Patrick. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
