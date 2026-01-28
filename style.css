@@ -33,65 +33,93 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
-/* --- NAVIGATION (Updated Floating Pill Style) --- */
+/* =========================================
+   NAVIGATION (Same Layout, New 3D Text)
+   ========================================= */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    /* Remove the solid background from the full bar */
-    background: transparent; 
+    background: transparent;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    height: 100px; /* Give it some breathing room */
+    height: 100px;
     transition: 0.3s;
 }
 
+/* 1. THE LOGO (Gold 3D Effect) */
 .logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--dark);
-    text-shadow: 0 2px 5px rgba(255, 255, 255, 0.8);
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ffffff;
+    /* Gold 3D Layers */
+    text-shadow: 
+        1px 1px 0px #cda434, 
+        2px 2px 0px #b08d2b, 
+        3px 3px 0px #8f7222, 
+        4px 4px 0px #705819,
+        5px 5px 10px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
 }
 
-/* The "Circular Thing" (Floating Pill Container) */
+.logo:hover {
+    transform: translateY(3px);
+    text-shadow: 1px 1px 0px #cda434, 2px 2px 5px rgba(0,0,0,0.4);
+}
+
+/* 2. THE FLOATING PILL CONTAINER (Layout remains same) */
 .nav-links {
     display: flex;
     gap: 2.5rem;
     align-items: center;
     
-    /* Pill Shape Styling */
-    background: rgba(41, 47, 54, 0.95); /* Dark background matching your theme */
-    padding: 15px 40px;                 /* Space inside the pill */
-    border-radius: 50px;                /* Makes it perfectly round/capsule */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Floating shadow effect */
-    backdrop-filter: blur(5px);         /* Blur background behind it */
+    /* The Pill Shape */
+    background: rgba(41, 47, 54, 0.95); 
+    padding: 15px 40px;                 
+    border-radius: 50px;                
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
 }
 
-/* Bold & Different Text Styling */
+/* 3. THE MENU LINKS (New Bold 3D White Effect) */
 .nav-links a {
-    color: #ffffff; /* White text to pop against the dark pill */
-    font-family: 'Playfair Display', serif; /* Change font to look distinct */
-    font-weight: 700; /* Bold */
-    font-size: 1.1rem;
-    text-transform: uppercase; /* Make it look like a button label */
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s ease;
+    
+    /* THICK 3D LAYERS (White front, Grey sides) */
+    text-shadow: 
+        1px 1px 0px #bbb, 
+        2px 2px 0px #999, 
+        3px 3px 0px #777, 
+        4px 4px 0px #555,
+        5px 5px 8px rgba(0,0,0,0.5);
 }
 
+/* Hover Effect: The buttons "press down" */
 .nav-links a:hover {
-    color: var(--primary);
-    transform: translateY(-2px); /* Slight lift on hover */
+    color: var(--primary); 
+    transform: translateY(3px); /* Moves text down */
+    
+    /* Shadow shrinks to look like it was pressed */
+    text-shadow: 
+        1px 1px 0px #555, 
+        2px 2px 2px rgba(0,0,0,0.5);
 }
 
+/* --- MOBILE RESPONSIVENESS --- */
 .hamburger {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
-    
-    /* Make the mobile button a circle too */
     background: white;
     width: 50px;
     height: 50px;
@@ -100,75 +128,179 @@ img { max-width: 100%; display: block; }
     justify-content: center;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+
+@media (max-width: 768px) {
+    .navbar { height: 80px; }
+    .hamburger { display: flex; }
+
+    .nav-links {
+        position: absolute;
+        top: 0; right: -100%;
+        background-color: #222;
+        /* Ensure image path is correct */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                          url('assets/images/pizza.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        justify-content: center;
+        padding: 0;
+        box-shadow: none;
+        transition: 0.4s ease;
+    }
+
+    .nav-links.active { right: 0; }
+    
+    .nav-links a {
+        font-size: 2rem; 
+        margin: 25px 0;
+        /* Optional: Keep 3D on mobile or remove it for flatness */
+        text-shadow: 2px 2px 0px #000; 
+    }
+}
+
 /* =========================================
-   MOBILE RESPONSIVENESS (With Background Image)
+   MOBILE RESPONSIVENESS (With 3D Text)
    ========================================= */
 @media (max-width: 768px) {
     .navbar {
         height: 80px;
-        background: transparent; /* Keep top bar clear */
     }
 
     .hamburger {
         display: flex;
-        background: white;
-        color: var(--dark);
-        z-index: 1001; /* Ensure button stays on top of the image */
+        z-index: 1001; /* Ensure button stays on top */
     }
 
-    /* The Slide-out Mobile Menu */
+    /* The Mobile Menu Container */
     .nav-links {
         position: absolute;
         top: 0;
         right: -100%;
         
-        /* --- HERE IS THE MAGIC --- */
-        /* 1. We add a dark gradient (0.8 opacity) so text pops */
-        /* 2. We add the image url */
-        background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-                    url('assets/images/Chefs.png'); 
-        
-        background-size: cover;     /* Ensures image fills the screen */
-        background-position: center; /* Centers the image */
+        /* Background Image Setup */
+        background-color: #222;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                          url('assets/images/pizza.png');
+        background-size: cover;
+        background-position: center;
         background-repeat: no-repeat;
-        /* ------------------------- */
-
+        
         flex-direction: column;
         width: 100%;
-        height: 100vh; /* Full screen height */
+        height: 100vh;
         border-radius: 0;
         justify-content: center;
         padding: 0;
         box-shadow: none;
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother slide animation */
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
     }
 
     .nav-links.active {
         right: 0;
     }
-
-    /* Link Styling */
-    .nav-links a {
-        color: #ffffff; /* Pure white text */
-        font-size: 2.2rem; /* Big, bold text */
-        font-family: 'Playfair Display', serif;
-        font-weight: 700;
-        margin: 25px 0;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        text-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Shadow to make text readable */
-        opacity: 0.8; /* Slightly see-through */
-        transition: 0.3s;
-    }
     
-    /* Hover Effect */
+    /* 3D TEXT FOR MOBILE LINKS */
+    .nav-links a {
+        font-size: 2.5rem; /* Bigger text for mobile */
+        margin: 25px 0;
+        color: #ffffff;
+        
+        /* THE 3D EFFECT (Same as desktop) */
+        text-shadow: 
+            1px 1px 0px #bbb, 
+            2px 2px 0px #999, 
+            3px 3px 0px #777, 
+            4px 4px 0px #555,
+            5px 5px 8px rgba(0,0,0,0.8); /* Darker shadow for better contrast on mobile */
+            
+        opacity: 1; /* Make sure it's fully visible */
+    }
+
+    /* Mobile Hover/Tap Effect */
     .nav-links a:hover {
-        opacity: 1;
-        transform: scale(1.1); /* Zoom in effect */
-        color: var(--primary); /* Optional: Turn pink/red on touch */
+        color: var(--primary);
+        transform: translateY(3px) scale(1.1); /* Press down + Zoom */
+        text-shadow: 
+            1px 1px 0px #555, 
+            2px 2px 2px rgba(0,0,0,0.5);
     }
 }
 
+        
+/* =========================================
+   MOBILE RESPONSIVENESS (With 3D Text)
+   ========================================= */
+@media (max-width: 768px) {
+    .navbar {
+        height: 80px;
+    }
+
+    .hamburger {
+        display: flex;
+        z-index: 1001; /* Ensure button stays on top */
+    }
+
+    /* The Mobile Menu Container */
+    .nav-links {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        
+        /* Background Image Setup */
+        background-color: #222;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                          url('assets/images/pizza.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        justify-content: center;
+        padding: 0;
+        box-shadow: none;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+    
+    /* 3D TEXT FOR MOBILE LINKS */
+    .nav-links a {
+        font-size: 2.5rem; /* Bigger text for mobile */
+        margin: 25px 0;
+        color: #ffffff;
+        
+        /* THE 3D EFFECT (Same as desktop) */
+        text-shadow: 
+            1px 1px 0px #bbb, 
+            2px 2px 0px #999, 
+            3px 3px 0px #777, 
+            4px 4px 0px #555,
+            5px 5px 8px rgba(0,0,0,0.8); /* Darker shadow for better contrast on mobile */
+            
+        opacity: 1; /* Make sure it's fully visible */
+    }
+
+    /* Mobile Hover/Tap Effect */
+    .nav-links a:hover {
+        color: var(--primary);
+        transform: translateY(3px) scale(1.1); /* Press down + Zoom */
+        text-shadow: 
+            1px 1px 0px #555, 
+            2px 2px 2px rgba(0,0,0,0.5);
+    }
+}
 
 /* --- HERO SECTION --- */
 .hero {
