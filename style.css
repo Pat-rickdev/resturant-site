@@ -1,15 +1,17 @@
 
-/* --- CSS VARIABLES & RESET --- */
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
 :root {
-    --primary: #FF6B6B;
-    --secondary: #4ECDC4;
-    --dark: #292F36;
-    --light: #F7FFF7;
-    --gray: #f4f4f4;
+    --primary: #FF6B6B;       /* Coral Red */
+    --secondary: #4ECDC4;     /* Teal */
+    --dark: #292F36;          /* Charcoal */
+    --light: #F7FFF7;         /* Off-white */
     --whatsapp-color: #25D366;
     --facebook: #1877F2;
     --instagram: #E4405F;
     --twitter: #1DA1F2;
+    --gold-shadow: #cda434;   /* For 3D Logo */
 }
 
 * {
@@ -18,23 +20,28 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--dark);
     line-height: 1.6;
     background-color: #fff;
+    overflow-x: hidden;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
 }
 
-a { text-decoration: none; color: inherit; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
 /* =========================================
-   NAVIGATION (Same Layout, New 3D Text)
+   2. NAVIGATION BAR (Desktop)
    ========================================= */
 .navbar {
     display: flex;
@@ -45,47 +52,49 @@ img { max-width: 100%; display: block; }
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
     height: 100px;
-    transition: 0.3s;
+    z-index: 1000;
+    transition: all 0.4s ease;
 }
 
-/* 1. THE LOGO (Gold 3D Effect) */
+/* --- LOGO (Gold 3D Effect) --- */
 .logo {
     font-size: 2rem;
     font-weight: 900;
     color: #ffffff;
-    /* Gold 3D Layers */
+    /* Gold 3D Shadow Layers */
     text-shadow: 
-        1px 1px 0px #cda434, 
+        1px 1px 0px var(--gold-shadow), 
         2px 2px 0px #b08d2b, 
         3px 3px 0px #8f7222, 
         4px 4px 0px #705819,
         5px 5px 10px rgba(0,0,0,0.6);
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     letter-spacing: 2px;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .logo:hover {
     transform: translateY(3px);
-    text-shadow: 1px 1px 0px #cda434, 2px 2px 5px rgba(0,0,0,0.4);
+    text-shadow: 1px 1px 0px var(--gold-shadow), 2px 2px 5px rgba(0,0,0,0.4);
 }
 
-/* 2. THE FLOATING PILL CONTAINER (Layout remains same) */
+/* --- FLOATING PILL MENU (Desktop) --- */
 .nav-links {
     display: flex;
     gap: 2.5rem;
     align-items: center;
-    
     /* The Pill Shape */
-    background: rgba(41, 47, 54, 0.95); 
+    background: rgba(41, 47, 54, 0.90); 
     padding: 15px 40px;                 
     border-radius: 50px;                
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     backdrop-filter: blur(5px);
 }
 
-/* 3. THE MENU LINKS (New Bold 3D White Effect) */
+/* --- MENU LINKS (White 3D Effect) --- */
 .nav-links a {
     color: #ffffff;
     font-family: 'Playfair Display', serif;
@@ -94,8 +103,7 @@ img { max-width: 100%; display: block; }
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: all 0.2s ease;
-    
-    /* THICK 3D LAYERS (White front, Grey sides) */
+    /* 3D White/Grey Shadow */
     text-shadow: 
         1px 1px 0px #bbb, 
         2px 2px 0px #999, 
@@ -104,208 +112,39 @@ img { max-width: 100%; display: block; }
         5px 5px 8px rgba(0,0,0,0.5);
 }
 
-/* Hover Effect: The buttons "press down" */
 .nav-links a:hover {
     color: var(--primary); 
-    transform: translateY(3px); /* Moves text down */
-    
-    /* Shadow shrinks to look like it was pressed */
-    text-shadow: 
-        1px 1px 0px #555, 
-        2px 2px 2px rgba(0,0,0,0.5);
+    transform: translateY(3px); /* Press down effect */
+    text-shadow: 1px 1px 0px #555, 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
+/* --- SCROLL EFFECT (Hides Logo) --- */
+.navbar.hide-logo-on-scroll .logo {
+    max-width: 0; opacity: 0; margin: 0; padding: 0;
+}
+.navbar.hide-logo-on-scroll { height: 70px; }
+
+/* Hamburger Icon (Hidden on Desktop) */
 .hamburger {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
     background: white;
-    width: 50px;
-    height: 50px;
+    width: 50px; height: 50px;
     border-radius: 50%;
-    align-items: center;
-    justify-content: center;
+    align-items: center; justify-content: center;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-@media (max-width: 768px) {
-    .navbar { height: 80px; }
-    .hamburger { display: flex; }
-
-    .nav-links {
-        position: absolute;
-        top: 0; right: -100%;
-        background-color: #222;
-        /* Ensure image path is correct */
-        background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-                          url('assets/images/pizza.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        flex-direction: column;
-        width: 100%;
-        height: 100vh;
-        border-radius: 0;
-        justify-content: center;
-        padding: 0;
-        box-shadow: none;
-        transition: 0.4s ease;
-    }
-
-    .nav-links.active { right: 0; }
-    
-    .nav-links a {
-        font-size: 2rem; 
-        margin: 25px 0;
-        /* Optional: Keep 3D on mobile or remove it for flatness */
-        text-shadow: 2px 2px 0px #000; 
-    }
+    color: var(--dark);
+    transition: 0.3s;
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS (With 3D Text)
+   3. HERO SECTION
    ========================================= */
-@media (max-width: 768px) {
-    .navbar {
-        height: 80px;
-    }
-
-    .hamburger {
-        display: flex;
-        z-index: 1001; /* Ensure button stays on top */
-    }
-
-    /* The Mobile Menu Container */
-    .nav-links {
-        position: absolute;
-        top: 0;
-        right: -100%;
-        
-        /* Background Image Setup */
-        background-color: #222;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-                          url('assets/images/pizza.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        
-        flex-direction: column;
-        width: 100%;
-        height: 100vh;
-        border-radius: 0;
-        justify-content: center;
-        padding: 0;
-        box-shadow: none;
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1000;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-    
-    /* 3D TEXT FOR MOBILE LINKS */
-    .nav-links a {
-        font-size: 2.5rem; /* Bigger text for mobile */
-        margin: 25px 0;
-        color: #ffffff;
-        
-        /* THE 3D EFFECT (Same as desktop) */
-        text-shadow: 
-            1px 1px 0px #bbb, 
-            2px 2px 0px #999, 
-            3px 3px 0px #777, 
-            4px 4px 0px #555,
-            5px 5px 8px rgba(0,0,0,0.8); /* Darker shadow for better contrast on mobile */
-            
-        opacity: 1; /* Make sure it's fully visible */
-    }
-
-    /* Mobile Hover/Tap Effect */
-    .nav-links a:hover {
-        color: var(--primary);
-        transform: translateY(3px) scale(1.1); /* Press down + Zoom */
-        text-shadow: 
-            1px 1px 0px #555, 
-            2px 2px 2px rgba(0,0,0,0.5);
-    }
-}
-
-        
-/* =========================================
-   MOBILE RESPONSIVENESS (With 3D Text)
-   ========================================= */
-@media (max-width: 768px) {
-    .navbar {
-        height: 80px;
-    }
-
-    .hamburger {
-        display: flex;
-        z-index: 1001; /* Ensure button stays on top */
-    }
-
-    /* The Mobile Menu Container */
-    .nav-links {
-        position: absolute;
-        top: 0;
-        right: -100%;
-        
-        /* Background Image Setup */
-        background-color: #222;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-                          url('assets/images/pizza.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        
-        flex-direction: column;
-        width: 100%;
-        height: 100vh;
-        border-radius: 0;
-        justify-content: center;
-        padding: 0;
-        box-shadow: none;
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1000;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-    
-    /* 3D TEXT FOR MOBILE LINKS */
-    .nav-links a {
-        font-size: 2.5rem; /* Bigger text for mobile */
-        margin: 25px 0;
-        color: #ffffff;
-        
-        /* THE 3D EFFECT (Same as desktop) */
-        text-shadow: 
-            1px 1px 0px #bbb, 
-            2px 2px 0px #999, 
-            3px 3px 0px #777, 
-            4px 4px 0px #555,
-            5px 5px 8px rgba(0,0,0,0.8); /* Darker shadow for better contrast on mobile */
-            
-        opacity: 1; /* Make sure it's fully visible */
-    }
-
-    /* Mobile Hover/Tap Effect */
-    .nav-links a:hover {
-        color: var(--primary);
-        transform: translateY(3px) scale(1.1); /* Press down + Zoom */
-        text-shadow: 
-            1px 1px 0px #555, 
-            2px 2px 2px rgba(0,0,0,0.5);
-    }
-}
-
-/* --- HERO SECTION --- */
 .hero {
     height: 100vh;
-    background: url('assets/images/Chefs.png') no-repeat center center/cover;
+    /* Main Hero Image (Ensure this exists too!) */
+    background: url('assets/images/chefs.png') no-repeat center center/cover;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -313,286 +152,158 @@ img { max-width: 100%; display: block; }
     align-items: center;
     text-align: center;
     color: white;
-    padding: 0 1rem;
-    margin-top: 60px; /* Offset for fixed nav */
 }
 
+/* Dark Overlay for Hero */
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); z-index: 1;
 }
 
-.hero-content {
-    z-index: 2;
-    max-width: 800px;
-}
+.hero-content { z-index: 2; max-width: 800px; padding: 0 1rem; }
 
 .hero h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
+    font-size: 3.5rem; line-height: 1.2; margin-bottom: 0.5rem;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
-
-.hero h1 span {
-    display: block;
-    color: var(--primary);
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    font-weight: 300;
-}
+.hero h1 span { display: block; color: var(--primary); }
+.hero p { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 300; }
 
 .cta-btn {
-    background-color: var(--whatsapp-color);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.cta-btn:hover {
-    transform: translateY(-3px);
+    background-color: var(--whatsapp-color); color: white;
+    padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 10px;
     box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s;
 }
+.cta-btn:hover { transform: translateY(-5px); }
 
-/* --- SECTIONS GENERAL --- */
-section {
-    padding: 4rem 5%;
-}
+/* =========================================
+   4. SECTIONS (General Layout)
+   ========================================= */
+section { padding: 5rem 5%; }
 
 .section-title {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-    position: relative;
+    text-align: center; margin-bottom: 3rem; font-size: 2.5rem;
+    position: relative; color: var(--dark);
 }
-
 .section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--primary);
-    margin: 10px auto 0;
+    content: ''; display: block; width: 80px; height: 4px;
+    background: var(--primary); margin: 15px auto 0;
 }
 
-/* --- FEATURED MEALS --- */
+/* --- MENU GRID --- */
 .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
 }
-
 .menu-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
+    background: white; border-radius: 15px; overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s;
 }
+.menu-card:hover { transform: translateY(-10px); }
+.menu-card img { width: 100%; height: 220px; object-fit: cover; }
+.card-content { padding: 1.5rem; }
+.card-content h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+.card-content p { font-size: 0.9rem; color: #666; }
 
-.menu-card:hover {
-    transform: translateY(-5px);
+/* --- REVIEWS SECTION --- */
+.reviews { background-color: var(--light); }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.review-card {
+    background: white; padding: 2rem; border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center;
 }
+.stars { color: #FFD700; margin-bottom: 1rem; }
 
-.menu-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
+/* --- ABOUT & FEATURES --- */
+.about { text-align: center; background: white; }
+.about-text { max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #555; }
 
-.card-content {
-    padding: 1.5rem;
-}
-
-.card-content h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-    color: var(--dark);
-}
-
-.card-content p {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* --- ABOUT SECTION --- */
-.about {
-    background-color: var(--light);
-    text-align: center;
-}
-
-.about-text {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.about p {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-}
-
-/* --- WHY CHOOSE US --- */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    text-align: center;
-}
-
-.feature-item i {
-    font-size: 2.5rem;
-    color: var(--primary);
-    margin-bottom: 1rem;
-}
-
-.feature-item h4 {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-}
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
+.feature-item i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
 
 /* --- FOOTER --- */
-footer {
-    background: var(--dark);
-    color: white;
-    padding: 3rem 5%;
-    text-align: center;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
+footer { background: var(--dark); color: white; padding: 4rem 5%; text-align: center; }
+.social-icons { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
 .social-icons a {
-    font-size: 1.5rem;
-    background: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s;
+    font-size: 1.5rem; background: rgba(255,255,255,0.1); width: 50px; height: 50px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    transition: 0.3s; color: white;
 }
-
-.social-icons a:hover {
-    transform: scale(1.1);
-}
-
-/* Brand Colors for Icons */
-.fa-facebook-f { color: var(--facebook); }
-.fa-instagram { color: var(--instagram); }
-.fa-twitter { color: var(--twitter); }
-.fa-whatsapp { color: var(--whatsapp-color); }
-
-.footer-info p {
-    margin-bottom: 0.5rem;
-    opacity: 0.8;
-}
-/* --- REVIEWS SECTION --- */
-.reviews {
-    background-color: var(--light); /* Light background to separate from other sections */
-}
-
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.review-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Soft premium shadow */
-    text-align: center;
-    transition: transform 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.03);
-}
-
-.review-card:hover {
-    transform: translateY(-5px); /* Floats up slightly on hover */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-}
-
-.stars {
-    color: #FFD700; /* Gold color */
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-}
-
-.review-card p {
-    font-style: italic;
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-}
-
-.review-card h4 {
-    font-weight: 700;
-    color: var(--dark);
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-/* =========================================
-   SCROLL EFFECT (Hide Navbar)
-   ========================================= */
-/* =========================================
-   SCROLL EFFECT (Hide Logo Only)
-   ========================================= */
-
-/* 1. Base Logo Styling for Animation */
-.logo {
-    /* Ensure these properties can be animated */
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    max-width: 200px; /* Max width needed to allow shrinking animation */
-    opacity: 1;
-    overflow: hidden; /* Hides text when width shrinks */
-    white-space: nowrap; /* Prevents text from wrapping when shrinking */
-}
-
-/* 2. The Hidden State (Triggered by JS) */
-.navbar.hide-logo-on-scroll .logo {
-    max-width: 0;       /* Shrink width to 0 */
-    opacity: 0;         /* Fade out */
-    padding: 0;         /* Remove padding */
-    margin: 0;          /* Remove margin */
-    transform: translateX(-20px); /* Slide slightly to the left */
-}
-
-/* 3. Adjust Navbar Alignment when Logo is gone */
-.navbar.hide-logo-on-scroll {
-    /* Optional: Shrink the bar height slightly for a sleeker look */
-    height: 70px; 
-    background: rgba(255, 255, 255, 0.05); /* Very subtle tint */
-    backdrop-filter: blur(5px); /* Add blur behind the whole strip */
-}
+.social-icons a:hover { background: white; transform: translateY(-5px); }
+.social-icons a:hover .fa-facebook-f { color: var(--facebook); }
+.social-icons a:hover .fa-instagram { color: var(--instagram); }
+.social-icons a:hover .fa-twitter { color: var(--twitter); }
+.social-icons a:hover .fa-whatsapp { color: var(--whatsapp-color); }
 
 /* =========================================
-   MOBILE SPECIFIC ADJUSTMENTS
+   5. MOBILE RESPONSIVENESS (With Chefs.png Fix)
    ========================================= */
 @media (max-width: 768px) {
-    /* On mobile, when logo hides, ensure hamburger stays accessible */
-    .navbar.hide-logo-on-scroll {
-        justify-content: flex-end; /* Pushes hamburger to the right */
-        height: 60px; /* Make header compact on mobile scroll */
+    .navbar { height: 80px; }
+    
+    /* Ensure Hamburger is visible */
+    .hamburger { display: flex; z-index: 1001; }
+
+    /* MOBILE MENU CONTAINER */
+    .nav-links {
+        position: absolute;
+        top: 0; 
+        right: -100%;
+        
+        /* 1. DARK FALLBACK (Safety color if image fails) */
+        background-color: #000;
+
+        /* 2. THE BACKGROUND IMAGE */
+        /* This path assumes style.css is in the SAME folder as index.html */
+        /* If style.css is in a 'css' folder, change to: url('../assets/images/Chefs.png') */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                          url('assets/images/Chefs.png');
+        
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        
+        /* Full Screen Layout */
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0; /* Removes pill shape */
+        justify-content: center;
+        padding: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
     }
+
+    /* Active State (Slides in) */
+    .nav-links.active { right: 0; }
+
+    /* MOBILE LINKS (BIG 3D TEXT) */
+    .nav-links a {
+        font-size: 2.5rem;
+        margin: 20px 0;
+        color: #ffffff;
+        
+        /* Strong 3D Shadow for Contrast against Image */
+        text-shadow: 
+            1px 1px 0px #bbb, 
+            2px 2px 0px #999, 
+            3px 3px 0px #777, 
+            4px 4px 0px #555,
+            5px 5px 10px rgba(0,0,0,0.9);
+            
+        opacity: 1;
+        letter-spacing: 2px;
+    }
+
+    /* Tap Effect */
+    .nav-links a:hover {
+        color: var(--primary);
+        transform: scale(1.1) translateY(3px);
+    }
+    
+    /* Keep Hamburger visible when scrolling */
+    .navbar.hide-logo-on-scroll { justify-content: flex-end; }
 }
